@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Gradle,Android,构建," />
+  <meta name="keywords" content="Yihome, Android" />
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="前言之前也写过一篇关于Gradle的文章，但是想要All In Once，最后写了一篇长文，但是结果很不理想，感觉什么都要讲，但是很多东西又都没有讲清楚。刚好最近突发奇想，想要搭个自己blog，以此为契机把之前的文章再整理一下。言归正传，正文开始。 Gradle介绍Gradle是一个项目自动构建工具，属于代码之外，和ant、maven这类老牌的构建工具相比，最大的不同就是不同就是使用groovy脚">
-<meta name="keywords" content="Gradle,Android,构建">
+<meta name="description" content="单元测试测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：  单元测试； 交互UI测试； End-to-End测试。  这三种测试中End-to-End测试(E2E test)是通过客户端和后台服务器的交互测试整个系统，通常又测试人员进行，交互UI测试由于需要了解代码流程，通常也有开发人员进行，最后单元测试就不用多说必然由开发人员进行。 Andro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gradle脚本从入门到...(1)">
-<meta property="og:url" content="http://haojen.github.io/2018/01/19/Gradle脚本从入门到-1/index.html">
+<meta property="og:title" content="yihome">
+<meta property="og:url" content="http://haojen.github.io/2018/02/06/JUnit单元测试/index.html">
 <meta property="og:site_name" content="yihome">
-<meta property="og:description" content="前言之前也写过一篇关于Gradle的文章，但是想要All In Once，最后写了一篇长文，但是结果很不理想，感觉什么都要讲，但是很多东西又都没有讲清楚。刚好最近突发奇想，想要搭个自己blog，以此为契机把之前的文章再整理一下。言归正传，正文开始。 Gradle介绍Gradle是一个项目自动构建工具，属于代码之外，和ant、maven这类老牌的构建工具相比，最大的不同就是不同就是使用groovy脚">
+<meta property="og:description" content="单元测试测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：  单元测试； 交互UI测试； End-to-End测试。  这三种测试中End-to-End测试(E2E test)是通过客户端和后台服务器的交互测试整个系统，通常又测试人员进行，交互UI测试由于需要了解代码流程，通常也有开发人员进行，最后单元测试就不用多说必然由开发人员进行。 Andro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T09:13:57.494Z">
+<meta property="og:updated_time" content="2018-02-08T09:22:08.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gradle脚本从入门到...(1)">
-<meta name="twitter:description" content="前言之前也写过一篇关于Gradle的文章，但是想要All In Once，最后写了一篇长文，但是结果很不理想，感觉什么都要讲，但是很多东西又都没有讲清楚。刚好最近突发奇想，想要搭个自己blog，以此为契机把之前的文章再整理一下。言归正传，正文开始。 Gradle介绍Gradle是一个项目自动构建工具，属于代码之外，和ant、maven这类老牌的构建工具相比，最大的不同就是不同就是使用groovy脚">
+<meta name="twitter:title" content="yihome">
+<meta name="twitter:description" content="单元测试测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：  单元测试； 交互UI测试； End-to-End测试。  这三种测试中End-to-End测试(E2E test)是通过客户端和后台服务器的交互测试整个系统，通常又测试人员进行，交互UI测试由于需要了解代码流程，通常也有开发人员进行，最后单元测试就不用多说必然由开发人员进行。 Andro">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://haojen.github.io/2018/01/19/Gradle脚本从入门到-1/"/>
+  <link rel="canonical" href="http://haojen.github.io/2018/02/06/JUnit单元测试/"/>
 
 
 
 
 
-  <title>Gradle脚本从入门到...(1) | yihome</title>
+  <title> | yihome</title>
   
 
 
@@ -265,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haojen.github.io/2018/01/19/Gradle脚本从入门到-1/">
+    <link itemprop="mainEntityOfPage" href="http://haojen.github.io/2018/02/06/JUnit单元测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="houyi">
@@ -282,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Gradle脚本从入门到...(1)</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -294,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T14:27:21+08:00">
-                2018-01-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T14:54:03+08:00">
+                2018-02-06
               </time>
             
 
@@ -312,7 +311,7 @@
 
           
           
-             <span id="/2018/01/19/Gradle脚本从入门到-1/" class="leancloud_visitors" data-flag-title="Gradle脚本从入门到...(1)">
+             <span id="/2018/02/06/JUnit单元测试/" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -343,26 +342,106 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前也写过一篇关于Gradle的文章，但是想要All In Once，最后写了一篇长文，但是结果很不理想，感觉什么都要讲，但是很多东西又都没有讲清楚。刚好最近突发奇想，想要搭个自己blog，以此为契机把之前的文章再整理一下。言归正传，正文开始。</p>
-<h2 id="Gradle介绍"><a href="#Gradle介绍" class="headerlink" title="Gradle介绍"></a>Gradle介绍</h2><p>Gradle是一个项目自动构建工具，属于代码之外，和ant、maven这类老牌的构建工具相比，最大的不同就是不同就是使用groovy脚本语言替代了xml作为项目构建的配置方式。相比于繁琐的xml，groovy无疑在代码简洁和已于理解上有着很大的优势。除此之外Gradle与maven在依赖控制上有着极大的共同之处，甚至Gradle的依赖管理就是在maven的基础上发展而来。</p>
-<p>虽然Gradle的使用者大部分都是从AS而来，但是想要了解Gradle最好还是先抛开IDE，拥抱命令行。因为大部分情况下IDE都会对原始的Gradle做一层封装，一来不方便深入学习，二来不利于暴露问题。</p>
-<h3 id="Gradle的安装"><a href="#Gradle的安装" class="headerlink" title="Gradle的安装"></a>Gradle的安装</h3><p>Gradle除了最初的从无到有的情况外，基本上不需要手动安装，然而我们最开始还真是一无所有。有两种方式安装Gradle：</p>
+        <h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：</p>
 <ol>
-<li>直接到<a href="https://gradle.org/releases/" target="_blank" rel="noopener">官网</a> 下载需要的对应平台的版本。</li>
-<li>使用包管理器直接下载，目前支持5种包管理，后续可能会增加，<a href="https://gradle.org/install/#install" target="_blank" rel="noopener">详情请见</a> </li>
+<li>单元测试；</li>
+<li>交互UI测试；</li>
+<li>End-to-End测试。</li>
 </ol>
-<p>安装完成之后，就是配置好对应的环境变量，需要配置的目录为<code>../gradle../bin</code> 配置方法请按各自平台进行。配置完成后，使用如下命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gradle -v</span><br></pre></td></tr></table></figure>
-<p>正常输出Gradle版本，表示安装完成。</p>
-<h4 id="Gradle-Wrapper"><a href="#Gradle-Wrapper" class="headerlink" title="Gradle Wrapper"></a>Gradle Wrapper</h4><p>前面说Gradle基本不需要手动安装，就是由于Gradle Wrapper的存在。Wrapper是一个使用了特定gradle版本的脚本，能够直接通过此脚本运行Gradle命令，即使此前没有下载过gradle，当然如果没有下载过gradle，wrapper脚本会去下载对应版本的Gradle。</p>
+<p>这三种测试中End-to-End测试(E2E test)是通过客户端和后台服务器的交互测试整个系统，通常又测试人员进行，交互UI测试由于需要了解代码流程，通常也有开发人员进行，最后单元测试就不用多说必然由开发人员进行。</p>
+<p>Android下的单元测试又可以分为两种：</p>
+<ol>
+<li>纯java的JUnit单元测试</li>
+<li>基于Android设备的AndroidJUnit单元测试</li>
+</ol>
+<p>两者的相比较，而AndroidJUnit测试覆盖面大，但是需要依赖Android设备，JUnit胜在在于运行速度快，可以脱离具体设备，但是设计难度偏大，作用范围有限，在没有分层之前基本上只能作用在util类上，但是使用类似MVP的分层结构之后，JUnit配合Mock基本能覆盖主要逻辑的测试。</p>
+<h2 id="JUnit单元测试"><a href="#JUnit单元测试" class="headerlink" title="JUnit单元测试"></a>JUnit单元测试</h2><p>JUnit作为一款强大的单元测试工具，AndroidStudio在创建工程时就会自动使用如下配置为我们集成JUnit<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">testCompile &apos;junit:junit:4.12&apos;</span><br></pre></td></tr></table></figure></p>
+<p>同时还会生成一个样例代码。我们想要生成一个类的单元测试类也是非常容易，直接在文件右键，选择goto即可看到选项。</p>
+<p>JUnit提供给我们使用的主要就是两块内容：注解和断言，注解用于声测试方法和控制测试执行流程，断言用于判断测试结果是否符合预期。</p>
+<h3 id="JUnit注解"><a href="#JUnit注解" class="headerlink" title="JUnit注解"></a>JUnit注解</h3><p>JUnit使用注解方式控制测试运行流程，常用的流程控制注解如下所示</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>@Test</strong> <br> public void method()</td>
+<td>测试注释指示该公共无效方法它所附着可以作为一个测试用例。</td>
+</tr>
+<tr>
+<td><strong>@Before</strong> <br> public void method()</td>
+<td>Before注释表示，该方法必须在类中的每个测试之前执行，<br>以便执行测试某些必要的先决条件。</td>
+</tr>
+<tr>
+<td><strong>@BeforeClass</strong> <br> public static void method()</td>
+<td>BeforeClass注释指出这是附着在静态方法必须执行一次并在类的<br>所有测试之前。发生这种情况时一般是测试计算共享配置方法<br>(如连接到数据库)。</td>
+</tr>
+<tr>
+<td><strong>@After</strong>  <br> public void method()</td>
+<td>After 注释指示，该方法在执行每项测试后执行<br>(如执行每一个测试后重置某些变量，删除临时变量等)</td>
+</tr>
+<tr>
+<td><strong>@AfterClass</strong>   <br> public static void method()</td>
+<td>当需要执行所有的测试在JUnit测试用例类后执行，<br>AfterClass注解可以使用以清理建立方法，(从数据库如断开连接)。<br>注意：附有此批注(类似于BeforeClass)的方法必须定义为静态。</td>
+</tr>
+<tr>
+<td><strong>@Ignore</strong> <br> 修饰测试类或者方法</td>
+<td>执行过程中会忽略指定的测试类或者方法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="JUnit断言"><a href="#JUnit断言" class="headerlink" title="JUnit断言"></a>JUnit断言</h3><p>JUnit提供了下列断言，用于在测试方法内判断代码运行的正确性</p>
+<table>
+<thead>
+<tr>
+<th>断言</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assertNull(Object object)</td>
+<td>检查对象是否为空</td>
+</tr>
+<tr>
+<td>assertNotNull(Object object)</td>
+<td>检查对象是否不为空</td>
+</tr>
+<tr>
+<td>assertEquals(long expected, long actual)</td>
+<td>检查long类型的值是否相等</td>
+</tr>
+<tr>
+<td>assertEquals(double expected, <br> double actual, double delta)</td>
+<td>检查指定精度的double值是否相等</td>
+</tr>
+<tr>
+<td>assertFalse(boolean condition)</td>
+<td>检查条件是否为假</td>
+</tr>
+<tr>
+<td>assertTrue(boolean condition)</td>
+<td>检查条件是否为真</td>
+</tr>
+<tr>
+<td>assertSame(Object expected, Object actual)</td>
+<td>检查两个对象引用是否引用同一对象<br>（即对象是否相等）</td>
+</tr>
+<tr>
+<td>assertNotSame(Object unexpected, Object actual)</td>
+<td>检查两个对象引用是否不引用统一对象(即对象不等)</td>
+</tr>
+</tbody>
+</table>
+<p>JUnit简单介绍到此为止，接下来就正式开始介绍，如何在Android环境下进行单元测试。</p>
 <blockquote>
-<p>使用AS打开github上的新项目时极有可能就会开在Gradle版本下载上，根本上网络问题，可以取消去手动下载。</p>
+<p>PS: 为什么没有code？coding还为时尚早，简单的JUnit还是很难满足Android下单元测试的要求。</p>
 </blockquote>
-<p> 生成Wrapper非常简单，直接运行对应命令行指令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gradle wrapper</span><br><span class="line">:wrapper</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL in 0s</span><br><span class="line">1 actionable task: 1 executed</span><br></pre></td></tr></table></figure>
-<p>即可生成path内对应版本的wrapper，生成的wraper主要包括如下文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">drwxr-xr-x   4 houyi  staff       128  1 29 13:55 .gradle</span><br><span class="line">drwxr-xr-x   3 houyi  staff        96  1 29 13:55 gradle</span><br><span class="line">-rwxr-xr-x   1 houyi  staff      5296  1 29 13:55 gradlew</span><br><span class="line">-rw-r--r--   1 houyi  staff      2260  1 29 13:55 gradlew.bat</span><br></pre></td></tr></table></figure>
-<p>在gradle目录下</p>
+<h2 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h2><p>在最开始中说到，使用分层可以把纯java的逻辑分离出来，以方便进行JUnit单元测试，但是即使使用分层抽离的设备无关代码，经过方法调用后最终也还是会调用了设备相关代码。这时候就需要使用mock对象了。</p>
+<h3 id="Mock-对象原理"><a href="#Mock-对象原理" class="headerlink" title="Mock 对象原理"></a>Mock 对象原理</h3><h3 id="Mockito使用"><a href="#Mockito使用" class="headerlink" title="Mockito使用"></a>Mockito使用</h3><p>Mockito正是一个基于Mock对象的框架，它可以使用Class对象，来</p>
 
       
     </div>
@@ -378,16 +457,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
-          
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-            <a href="/tags/构建/" rel="tag"># 构建</a>
-          
-        </div>
-      
 
       
       
@@ -397,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/28/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/01/19/Gradle脚本从入门到-1/" rel="next" title="Gradle脚本从入门到...(1)">
+                <i class="fa fa-chevron-left"></i> Gradle脚本从入门到...(1)
               </a>
             
           </div>
@@ -406,10 +475,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/06/JUnit单元测试/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradle介绍"><span class="nav-number">2.</span> <span class="nav-text">Gradle介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradle的安装"><span class="nav-number">2.1.</span> <span class="nav-text">Gradle的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradle-Wrapper"><span class="nav-number">2.1.1.</span> <span class="nav-text">Gradle Wrapper</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit单元测试"><span class="nav-number">2.</span> <span class="nav-text">JUnit单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JUnit注解"><span class="nav-number">2.1.</span> <span class="nav-text">JUnit注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JUnit断言"><span class="nav-number">2.2.</span> <span class="nav-text">JUnit断言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mockito"><span class="nav-number">3.</span> <span class="nav-text">Mockito</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock-对象原理"><span class="nav-number">3.1.</span> <span class="nav-text">Mock 对象原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mockito使用"><span class="nav-number">3.2.</span> <span class="nav-text">Mockito使用</span></a></li></ol></li></ol></div>
             
 
           </div>

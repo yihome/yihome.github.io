@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haojen.github.io/"/>
-  <updated>2018-01-29T09:13:57.494Z</updated>
+  <updated>2018-02-08T09:22:08.327Z</updated>
   <id>http://haojen.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://haojen.github.io/2018/02/06/JUnit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    <id>http://haojen.github.io/2018/02/06/JUnit单元测试/</id>
+    <published>2018-02-06T06:54:03.182Z</published>
+    <updated>2018-02-08T09:22:08.327Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：</p><ol><li>单元测试；</li><li>交互UI测试；</li><li>End-to-End测试。</li></ol><p>这三种测试中End-to-End测试(E2E test)是通过客户端和后台服务器的交互测试整个系统，通常又测试人员进行，交互UI测试由于需要了解代码流程，通常也有开发人员进行，最后单元测试就不用多说必然由开发人员进行。</p><p>Android下的单元测试又可以分为两种：</p><ol><li>纯java的JUnit单元测试</li><li>基于Android设备的AndroidJUnit单元测试</li></ol><p>两者的相比较，而AndroidJUnit测试覆盖面大，但是需要依赖Android设备，JUnit胜在在于运行速度快，可以脱离具体设备，但是设计难度偏大，作用范围有限，在没有分层之前基本上只能作用在util类上，但是使用类似MVP的分层结构之后，JUnit配合Mock基本能覆盖主要逻辑的测试。</p><h2 id="JUnit单元测试"><a href="#JUnit单元测试" class="headerlink" title="JUnit单元测试"></a>JUnit单元测试</h2><p>JUnit作为一款强大的单元测试工具，AndroidStudio在创建工程时就会自动使用如下配置为我们集成JUnit<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">testCompile &apos;junit:junit:4.12&apos;</span><br></pre></td></tr></table></figure></p><p>同时还会生成一个样例代码。我们想要生成一个类的单元测试类也是非常容易，直接在文件右键，选择goto即可看到选项。</p><p>JUnit提供给我们使用的主要就是两块内容：注解和断言，注解用于声测试方法和控制测试执行流程，断言用于判断测试结果是否符合预期。</p><h3 id="JUnit注解"><a href="#JUnit注解" class="headerlink" title="JUnit注解"></a>JUnit注解</h3><p>JUnit使用注解方式控制测试运行流程，常用的流程控制注解如下所示</p><table><thead><tr><th>注解</th><th>描述</th></tr></thead><tbody><tr><td><strong>@Test</strong> <br> public void method()</td><td>测试注释指示该公共无效方法它所附着可以作为一个测试用例。</td></tr><tr><td><strong>@Before</strong> <br> public void method()</td><td>Before注释表示，该方法必须在类中的每个测试之前执行，<br>以便执行测试某些必要的先决条件。</td></tr><tr><td><strong>@BeforeClass</strong> <br> public static void method()</td><td>BeforeClass注释指出这是附着在静态方法必须执行一次并在类的<br>所有测试之前。发生这种情况时一般是测试计算共享配置方法<br>(如连接到数据库)。</td></tr><tr><td><strong>@After</strong>  <br> public void method()</td><td>After 注释指示，该方法在执行每项测试后执行<br>(如执行每一个测试后重置某些变量，删除临时变量等)</td></tr><tr><td><strong>@AfterClass</strong>   <br> public static void method()</td><td>当需要执行所有的测试在JUnit测试用例类后执行，<br>AfterClass注解可以使用以清理建立方法，(从数据库如断开连接)。<br>注意：附有此批注(类似于BeforeClass)的方法必须定义为静态。</td></tr><tr><td><strong>@Ignore</strong> <br> 修饰测试类或者方法</td><td>执行过程中会忽略指定的测试类或者方法</td></tr></tbody></table><h3 id="JUnit断言"><a href="#JUnit断言" class="headerlink" title="JUnit断言"></a>JUnit断言</h3><p>JUnit提供了下列断言，用于在测试方法内判断代码运行的正确性</p><table><thead><tr><th>断言</th><th>描述</th></tr></thead><tbody><tr><td>assertNull(Object object)</td><td>检查对象是否为空</td></tr><tr><td>assertNotNull(Object object)</td><td>检查对象是否不为空</td></tr><tr><td>assertEquals(long expected, long actual)</td><td>检查long类型的值是否相等</td></tr><tr><td>assertEquals(double expected, <br> double actual, double delta)</td><td>检查指定精度的double值是否相等</td></tr><tr><td>assertFalse(boolean condition)</td><td>检查条件是否为假</td></tr><tr><td>assertTrue(boolean condition)</td><td>检查条件是否为真</td></tr><tr><td>assertSame(Object expected, Object actual)</td><td>检查两个对象引用是否引用同一对象<br>（即对象是否相等）</td></tr><tr><td>assertNotSame(Object unexpected, Object actual)</td><td>检查两个对象引用是否不引用统一对象(即对象不等)</td></tr></tbody></table><p>JUnit简单介绍到此为止，接下来就正式开始介绍，如何在Android环境下进行单元测试。</p><blockquote><p>PS: 为什么没有code？coding还为时尚早，简单的JUnit还是很难满足Android下单元测试的要求。</p></blockquote><h2 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h2><p>在最开始中说到，使用分层可以把纯java的逻辑分离出来，以方便进行JUnit单元测试，但是即使使用分层抽离的设备无关代码，经过方法调用后最终也还是会调用了设备相关代码。这时候就需要使用mock对象了。</p><h3 id="Mock-对象原理"><a href="#Mock-对象原理" class="headerlink" title="Mock 对象原理"></a>Mock 对象原理</h3><h3 id="Mockito使用"><a href="#Mockito使用" class="headerlink" title="Mockito使用"></a>Mockito使用</h3><p>Mockito正是一个基于Mock对象的框架，它可以使用Class对象，来</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;单元测试&quot;&gt;&lt;a href=&quot;#单元测试&quot; class=&quot;headerlink&quot; title=&quot;单元测试&quot;&gt;&lt;/a&gt;单元测试&lt;/h2&gt;&lt;p&gt;测试的重要性我就不多做解释，这里只介绍一下Android下测试分类，Android下的测试分为三种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;l
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Gradle脚本从入门到...(1)</title>
