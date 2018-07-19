@@ -90,7 +90,7 @@
 <meta property="og:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal.png">
-<meta property="og:updated_time" content="2018-07-19T05:36:59.492Z">
+<meta property="og:updated_time" content="2018-07-19T05:39:02.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ThreadLocal详解">
 <meta name="twitter:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
@@ -365,7 +365,7 @@
 <p>这样当持有<code>ThreadLocal</code>的对象销毁后，没有强引用的<code>ThreadLocal</code>也会很快被回收，但是与之对应的value却没法被自动回收。</p>
 <p>事实上<code>ThreadLocalMap</code>对于这样的情况也是有所处理，即<code>ThreadLocalMap</code>在每次set或者get时发现有key为空的元素，都会把它清理掉</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(ThreadLocal&lt;?&gt; key, Object value)</span> </span>&#123;</span><br><span class="line"> 	......</span><br><span class="line">    <span class="keyword">for</span> (Entry e = tab[i];</span><br><span class="line">    e != <span class="keyword">null</span>;</span><br><span class="line">    e = tab[i = nextIndex(i, len)]) &#123;</span><br><span class="line">    	ThreadLocal&lt;?&gt; k = e.get();</span><br><span class="line">        <span class="keyword">if</span> (k == key) &#123;</span><br><span class="line">            e.value = value;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//清理掉key==null的元素</span></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            replaceStaleEntry(key, value, i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是即使这样光靠<code>ThreadLocalMap</code>也没有办法完全避免value的内存泄漏，最好的就是每次使用完<code>ThreadLocal</code>后都调用它的remove方法，清楚数据。</p>
+<p>但是即使这样光靠<code>ThreadLocalMap</code>也没有办法完全避免value的内存泄漏，最好的就是每次使用完<code>ThreadLocal</code>后都调用它的remove方法，清除数据。</p>
 
       
     </div>
