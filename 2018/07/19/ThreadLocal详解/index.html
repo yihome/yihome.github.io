@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Gradle,线程," />
+  <meta name="keywords" content="线程,Gradle," />
 
 
 
@@ -82,19 +82,19 @@
 
 
 <meta name="description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
-<meta name="keywords" content="Gradle,线程">
+<meta name="keywords" content="线程,Gradle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ThreadLocal详解">
 <meta property="og:url" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/index.html">
 <meta property="og:site_name" content="yihome">
 <meta property="og:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal详解/ThreadLocal.png">
-<meta property="og:updated_time" content="2018-07-19T02:25:40.529Z">
+<meta property="og:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal.png">
+<meta property="og:updated_time" content="2018-07-19T02:32:34.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ThreadLocal详解">
 <meta name="twitter:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
-<meta name="twitter:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal详解/ThreadLocal.png">
+<meta name="twitter:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal.png">
 
 
 
@@ -355,7 +355,7 @@
 <h2 id="ThreadLocal实现原理"><a href="#ThreadLocal实现原理" class="headerlink" title="ThreadLocal实现原理"></a>ThreadLocal实现原理</h2><p><code>ThreadLocal</code>看上去很神奇，原理其实并不难，它只是把我们的变量关联到了线程的<code>Thread</code>对象上，我们借助<code>ThreadLocal</code>的set方法来说明这点。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在我们通过set方法设置<code>ThreadLocal</code>的内容是，它首先获取当前的<code>Thread</code>对象，同时获取<code>Thread</code>上的<code>ThreadLocalMap</code>，<code>ThreadLocalMap</code>事实上是hash表的一种实现，set事实上是把<code>ThreadLocal</code>对象和相应的value分别作为key和value保证在了这个map中，也就是说我们的value保存在Thread对象内。</p>
-<p><img src="ThreadLocal详解/ThreadLocal.png" alt="ThreadLocal"></p>
+<p><img src="ThreadLocal.png" alt="ThreadLocal"></p>
 <p>get方法也是类似的，我们使用get方法获取值的时候，首先是获取currentThread，然后通过<code>Thread</code>的<code>ThreadLocalMap</code>用<code>ThreadLocal</code>作为key获取对应的value。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ThreadLocalMap.Entry e = map.getEntry(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            T result = (T)e.value;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> setInitialValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果没有创建过<code>ThreadLocalMap</code>，<code>setInitialValue</code>会创建<code>ThreadLocalMap</code>同时返回null。</p>
@@ -383,9 +383,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
-          
             <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
           
         </div>
       
