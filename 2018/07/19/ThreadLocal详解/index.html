@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android,permission," />
+  <meta name="keywords" content="Gradle,线程," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="Android动态权限Android6.0（API23）开始，系统权限出现了很大的变化，此前在权限的检查和获取只发生在app安装时，同时获取后可以一直享有权限。在6.0以后，一些敏感的权限需要动态的获取，同时每次用户可以随时关闭权限，因此需要在每次使用前进行权限检查和获取。 权限等级6.0以后也不是所有权限的获取都需要动态的申请，权限被分成了几个等级，权限的等级主要有四种，分别是Normal、Si">
-<meta name="keywords" content="Android,permission">
+<meta name="description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
+<meta name="keywords" content="Gradle,线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android权限管理">
-<meta property="og:url" content="http://haojen.github.io/2018/07/11/Android权限管理/index.html">
+<meta property="og:title" content="ThreadLocal详解">
+<meta property="og:url" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/index.html">
 <meta property="og:site_name" content="yihome">
-<meta property="og:description" content="Android动态权限Android6.0（API23）开始，系统权限出现了很大的变化，此前在权限的检查和获取只发生在app安装时，同时获取后可以一直享有权限。在6.0以后，一些敏感的权限需要动态的获取，同时每次用户可以随时关闭权限，因此需要在每次使用前进行权限检查和获取。 权限等级6.0以后也不是所有权限的获取都需要动态的申请，权限被分成了几个等级，权限的等级主要有四种，分别是Normal、Si">
+<meta property="og:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-19T02:20:23.572Z">
+<meta property="og:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal详解/ThreadLocal.png">
+<meta property="og:updated_time" content="2018-07-19T02:20:37.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android权限管理">
-<meta name="twitter:description" content="Android动态权限Android6.0（API23）开始，系统权限出现了很大的变化，此前在权限的检查和获取只发生在app安装时，同时获取后可以一直享有权限。在6.0以后，一些敏感的权限需要动态的获取，同时每次用户可以随时关闭权限，因此需要在每次使用前进行权限检查和获取。 权限等级6.0以后也不是所有权限的获取都需要动态的申请，权限被分成了几个等级，权限的等级主要有四种，分别是Normal、Si">
+<meta name="twitter:title" content="ThreadLocal详解">
+<meta name="twitter:description" content="ThreadLocal是什么ThreadLocal是java中处理并发问题的一种方式，但是和Synchronized、volatile等进程同步关键字不同，ThreadLocal主要用于进程隔离，即每一个线程都有一个自己的ThreadLocal，访问时访问的都是线程持有的对象，无法访问其他线程的ThreadLocal,也就不存在并发的问题。 ThreadLocal使用ThreadLocal使用起来">
+<meta name="twitter:image" content="http://haojen.github.io/2018/07/19/ThreadLocal详解/ThreadLocal详解/ThreadLocal.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://haojen.github.io/2018/07/11/Android权限管理/"/>
+  <link rel="canonical" href="http://haojen.github.io/2018/07/19/ThreadLocal详解/"/>
 
 
 
 
 
-  <title>Android权限管理 | yihome</title>
+  <title>ThreadLocal详解 | yihome</title>
   
 
 
@@ -265,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haojen.github.io/2018/07/11/Android权限管理/">
+    <link itemprop="mainEntityOfPage" href="http://haojen.github.io/2018/07/19/ThreadLocal详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="houyi">
@@ -282,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android权限管理</h1>
+          <h1 class="post-title" itemprop="name headline">ThreadLocal详解</h1>
         
 
         <div class="post-meta">
@@ -294,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T14:26:22+08:00">
-                2018-07-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T10:18:26+08:00">
+                2018-07-19
               </time>
             
 
@@ -312,7 +314,7 @@
 
           
           
-             <span id="/2018/07/11/Android权限管理/" class="leancloud_visitors" data-flag-title="Android权限管理">
+             <span id="/2018/07/19/ThreadLocal详解/" class="leancloud_visitors" data-flag-title="ThreadLocal详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -343,134 +345,27 @@
       
 
       
-        <h2 id="Android动态权限"><a href="#Android动态权限" class="headerlink" title="Android动态权限"></a>Android动态权限</h2><p>Android6.0（API23）开始，系统权限出现了很大的变化，此前在权限的检查和获取只发生在app安装时，同时获取后可以一直享有权限。在6.0以后，一些敏感的权限需要动态的获取，同时每次用户可以随时关闭权限，因此需要在每次使用前进行权限检查和获取。</p>
-<h2 id="权限等级"><a href="#权限等级" class="headerlink" title="权限等级"></a>权限等级</h2><p>6.0以后也不是所有权限的获取都需要动态的申请，权限被分成了几个等级，权限的等级主要有四种，分别是Normal、Signature、Dangerous和SignatureOrSystem。</p>
-<ul>
-<li>Normal等级：任何应用都可以申请，直接在manifest声明，安装时提示用户，之后会自动获取此类权限。</li>
-<li>Dangerous等级：任何应用都可以申请，需要在manifest中声明，同时在使用时需要动态的获取权限。</li>
-<li>Signature等级：只有与声明权限的apk使用相同的签名私钥才能申请权限。</li>
-<li>SignatureOrSystem:只有与声明权限的apk使用相同的签名私钥或者在/system/app目录下的应用才能申请权限。</li>
-</ul>
-<p>这四种权限都是在manifest中声明权限时指定的，在普通的应用开发中我们一般需要关注的只有Normal和Dangerous两种，其中需要动态申请权限的只有Dangerous权限。</p>
-<h2 id="Dangerous权限"><a href="#Dangerous权限" class="headerlink" title="Dangerous权限"></a>Dangerous权限</h2><p>Android下所有的Dangerous权限都被分成权限组，在动态申请权限时，申请的时提示给用户的信息都以组为单位的，比如如果app申请<code>READ_CONTACTS</code>权限,那么系统仅仅提示用户申请联系人权限，如果用户允许，在8.0以下的版本中同组的<code>WRITE_CONTACTS</code>也会一并被获取到，而在8.0及以上<code>WRITE_CONTACTS</code>权限还需要我们去动态的申请，但是系统会立即授予该权限而不会提示用户。</p>
-<p>Dangerous权限分组</p>
-<table>
-<thead>
-<tr>
-<th>权限组</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CALENDAR</td>
-<td>READ_CALENDAR<br>WRITE_CALENDAR</td>
-</tr>
-<tr>
-<td>CAMERA</td>
-<td>CAMERA</td>
-</tr>
-<tr>
-<td>CONTACTS</td>
-<td>READ_CONTACTS<br>WRITE_CONTACTS<br>GET_ACCOUNTS</td>
-</tr>
-<tr>
-<td>LOCATION</td>
-<td>ACCESS_FINE_LOCATION<br>ACCESS_COARSE_LOCATION</td>
-</tr>
-<tr>
-<td>MICROPHONE</td>
-<td>RECORD_AUDIO</td>
-</tr>
-<tr>
-<td>PHONE</td>
-<td>READ_PHONE_STATE<br>READ_PHONE_NUMBERS<br>CALL_PHONE<br>ANSWER_PHONE_CALLS<br>READ_CALL_LOG<br>WRITE_CALL_LOG<br>ADD_VOICEMAIL<br>USE_SIP<br>PROCESS_OUTGOING_CALLS</td>
-</tr>
-<tr>
-<td>SENSORS</td>
-<td>BODY_SENSORS</td>
-</tr>
-<tr>
-<td>SMS</td>
-<td>SEND_SMS<br>RECEIVE_SMS<br>READ_SMS<br>RECEIVE_WAP_PUSH<br>RECEIVE_MMS</td>
-</tr>
-<tr>
-<td>STORAGE</td>
-<td>READ_EXTERNAL_STORAGE<br>WRITE_EXTERNAL_STORAGE</td>
-</tr>
-</tbody>
-</table>
-<h2 id="动态权限申请"><a href="#动态权限申请" class="headerlink" title="动态权限申请"></a>动态权限申请</h2><h3 id="申明权限"><a href="#申明权限" class="headerlink" title="申明权限"></a>申明权限</h3><p>对于Dangerous的权限，我们首先也需要在manifest中申请，这里以联系人权限为例</p>
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.WRITE_CONTACTS&quot;/&gt;
-</code></pre><h3 id="权限检查"><a href="#权限检查" class="headerlink" title="权限检查"></a>权限检查</h3><p>在使用试图操作联系人前需要首先确认有没有这个权限</p>
-<pre><code>if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-            != PackageManager.PERMISSION_GRANTED){
-    //申请权限    
-}else{
-      //读取联系人
-}
-</code></pre><p><code>ContextCompat.checkSelfPermission(Context context,  String permission)</code>方法用于检查App是否拥有参数指定的权限，方法的返回值为int，可能的取值如下</p>
-<ul>
-<li><p><code>PERMISSION_GRANTED</code> 已经获取权限</p>
-</li>
-<li><p><code>PERMISSION_DENIED</code> 还没有获取权限</p>
-</li>
-</ul>
-<h3 id="权限申请"><a href="#权限申请" class="headerlink" title="权限申请"></a>权限申请</h3><p>如果尚未获取权限则在使用之前需要先申请权限</p>
-<pre><code>ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_CONTACTS},CODE_REQUEST_CONTACTS);
-</code></pre><p>一般情况下，<code>ActivityCompat.requestPermissions</code>方法会使用一个标准的对话框提示用户，但是有些机型则会跳转到一个新的页面做这件事（会导致Activity声明周期变化，甚至重启）。</p>
-<p>申请之后则需要等待用户选择，如果如果你的<code>Activity</code>不是继承自<code>AppCompatActivity</code>，则需要实现<code>OnRequestPermissionsResultCallback</code>用于接收权限请求的结果回掉。</p>
-<pre><code>public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    if(requestCode==CODE_REQUEST_CONTACTS){
-        if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
-            //读取联系人
-        }else{
-            //权限获取失败
-        }
-    }
-}
-</code></pre><h3 id="合理的权限申请"><a href="#合理的权限申请" class="headerlink" title="合理的权限申请"></a>合理的权限申请</h3><p>用户首次拒绝授予权限之后，当第二次进行权限请求时，会出现“不再提示”的选项，如果用户勾选，则后续对此权限的申请将不再提示用户，直接失败。因此我们需要在合适的时机解释获取权限的原因，我们可以使用<code>ActivityCompat.shouldShowRequestPermissionRationale</code>方法来确定是否需要告知用户，这个方法默认情况下返回false，当用户拒绝过授予此权限后，这个返回值为true（用户勾选不再提示后返回值为false）。</p>
-<pre><code>if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-            != PackageManager.PERMISSION_GRANTED) {
-    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.READ_CONTACTS)) {
-        //提示用户后申请权限
-    } else {
-        //申请权限
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_CONTACTS}, CODE_REQUEST_CONTACTS);
-    }
-} else {
-    //读取联系人
-}
-</code></pre><h3 id="权限被拒绝"><a href="#权限被拒绝" class="headerlink" title="权限被拒绝"></a>权限被拒绝</h3><p>权限被拒绝后，再次申请会继续弹出，但是当用户勾选“不再提示”后，下次权限申请系统将不再提示用户，而是直接拒绝，这种情况下，我们只能引导用户到设置里自己打开权限，我们可以在<code>onRequestPermissionsResult</code>中通过<code>ActivityCompat.shouldShowRequestPermissionRationale</code>来判断用户是否选择了不再提示。</p>
-<pre><code>public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-    if (requestCode == CODE_REQUEST_CONTACTS) {
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            //读取联系人
-        } else {
-            if(!ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)){
-               //引导用户到设置页面开启权限
-            }
-        }
-    }
-}
-
-//跳转到设置页面相关代码
-Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-Uri uri = Uri.fromParts(&quot;package&quot;,getApplicationContext().getPackageName(), null);
-intent.setData(uri);
-startActivity(intent);
-</code></pre><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="https://blog.csdn.net/u013553529/article/details/53167072" target="_blank" rel="noopener">Android 权限的一些细节</a> </li>
-<li><a href="https://blog.csdn.net/jltxgcy/article/details/48288467" target="_blank" rel="noopener">Android中的权限管理</a></li>
-<li><a href="https://blog.csdn.net/lmj623565791/article/details/50709663" target="_blank" rel="noopener">Android 6.0 运行时权限处理完全解析</a></li>
-<li><a href="https://www.jianshu.com/p/a51593817825" target="_blank" rel="noopener">Android6.0动态权限申请步骤以及需要注意的一些坑</a></li>
-</ul>
+        <h2 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h2><p><code>ThreadLocal</code>是java中处理并发问题的一种方式，但是和<code>Synchronized</code>、<code>volatile</code>等进程同步关键字不同，<code>ThreadLocal</code>主要用于进程隔离，即每一个线程都有一个自己的<code>ThreadLocal</code>，访问时访问的都是线程持有的对象，无法访问其他线程的<code>ThreadLocal</code>,也就不存在并发的问题。</p>
+<h2 id="ThreadLocal使用"><a href="#ThreadLocal使用" class="headerlink" title="ThreadLocal使用"></a>ThreadLocal使用</h2><p><code>ThreadLocal</code>使用起来类似一个数据封装类，使用set和get方法设置和获取存储的内容</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建ThreadLocal对象，使用泛型制定类型</span></span><br><span class="line">ThreadLocal&lt;Integer&gt; localInt = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"><span class="comment">//写入内容</span></span><br><span class="line">localInt.set(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//获取内容</span></span><br><span class="line"><span class="keyword">assert</span> locaInt.get()==<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p><code>ThreadLocal</code>特殊的地方就在于不同线程间是无法获取到其它线程的相应对象的，在多线程场景中对ThreadLocal的使用实例如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocal&lt;Integer&gt; localInt = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line">Thread threadA = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">100</span>;i&lt;<span class="number">200</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                localInt.set(i);</span><br><span class="line">                sleep(<span class="number">10</span>);</span><br><span class="line">                <span class="keyword">assert</span> localInt.get()==i;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">super</span>.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread threadB = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                localInt.set(i);</span><br><span class="line">                sleep(<span class="number">10</span>);</span><br><span class="line">                <span class="keyword">assert</span> localInt.get()==i;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">super</span>.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">threadA.start();</span><br><span class="line">threadB.start();</span><br></pre></td></tr></table></figure>
+<p>ThreadA和ThreadB中<code>ThreadLocal</code>是不会相互影响的，他们每次从<code>ThreadLocal</code>中获取的都是线程内部的相应数据。</p>
+<p>在上面的例子中我们只是用<code>ThreadLocal</code>存储了一个变量，如果想要同时拥有多个线程私有的变量就只能创建多个<code>TreadLocal</code>对象。</p>
+<h2 id="ThreadLocal实现原理"><a href="#ThreadLocal实现原理" class="headerlink" title="ThreadLocal实现原理"></a>ThreadLocal实现原理</h2><p><code>ThreadLocal</code>看上去很神奇，原理其实并不难，它只是把我们的变量关联到了线程的<code>Thread</code>对象上，我们借助<code>ThreadLocal</code>的set方法来说明这点。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在我们通过set方法设置<code>ThreadLocal</code>的内容是，它首先获取当前的<code>Thread</code>对象，同时获取<code>Thread</code>上的<code>ThreadLocalMap</code>，<code>ThreadLocalMap</code>事实上是hash表的一种实现，set事实上是把<code>ThreadLocal</code>对象和相应的value分别作为key和value保证在了这个map中，也就是说我们的value保存在Thread对象内。</p>
+<p><img src="ThreadLocal详解/ThreadLocal.png" alt="ThreadLocal"></p>
+<p>get方法也是类似的，我们使用get方法获取值的时候，首先是获取currentThread，然后通过<code>Thread</code>的<code>ThreadLocalMap</code>用<code>ThreadLocal</code>作为key获取对应的value。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ThreadLocalMap.Entry e = map.getEntry(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            T result = (T)e.value;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> setInitialValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有创建过<code>ThreadLocalMap</code>，<code>setInitialValue</code>会创建<code>ThreadLocalMap</code>同时返回null。</p>
+<h2 id="ThreadLocal内存泄漏"><a href="#ThreadLocal内存泄漏" class="headerlink" title="ThreadLocal内存泄漏"></a>ThreadLocal内存泄漏</h2><p>正常来说<code>ThreadLocal</code>的对象和其保存的value持有在一个普通的对象内，而在保存时他们会作为key和value保存在<code>Thread</code>对象的map内，线程一般拥有比普通对象更长的生命周期，特别是对于线程池中的线程。</p>
+<p>这种情况下作为key的<code>ThreadLocal</code>和value就有泄漏的风险，<code>ThreadLocal</code>的设计上自然也考虑到了这点，因此<code>ThreadLocalMap</code>中Key都是作为弱引用存在的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样当持有<code>ThreadLocal</code>的对象销毁后，没有强引用的<code>ThreadLocal</code>也会很快被回收，但是与之对应的value却没法被自动回收。</p>
+<p>事实上<code>ThreadLocalMap</code>对于这样的情况也是有所处理，即<code>ThreadLocalMap</code>在每次set或者get时发现有key为空的元素，都会把它清理掉</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(ThreadLocal&lt;?&gt; key, Object value)</span> </span>&#123;</span><br><span class="line"> 	......</span><br><span class="line">    <span class="keyword">for</span> (Entry e = tab[i];</span><br><span class="line">    e != <span class="keyword">null</span>;</span><br><span class="line">    e = tab[i = nextIndex(i, len)]) &#123;</span><br><span class="line">    	ThreadLocal&lt;?&gt; k = e.get();</span><br><span class="line">        <span class="keyword">if</span> (k == key) &#123;</span><br><span class="line">            e.value = value;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//清理掉key==null的元素</span></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            replaceStaleEntry(key, value, i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是即使这样光靠<code>ThreadLocalMap</code>也没有办法完全避免value的内存泄漏，最好的就是每次使用完<code>ThreadLocal</code>后都调用它的remove方法，清楚数据。</p>
 
       
     </div>
@@ -488,7 +383,7 @@ startActivity(intent);
       
         <div class="post-tags">
           
-            <a href="/tags/Android-permission/" rel="tag"># Android,permission</a>
+            <a href="/tags/Gradle-线程/" rel="tag"># Gradle,线程</a>
           
         </div>
       
@@ -501,8 +396,8 @@ startActivity(intent);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/05/AndrodUI测试入门/" rel="next" title="AndrodUI测试入门">
-                <i class="fa fa-chevron-left"></i> AndrodUI测试入门
+              <a href="/2018/07/16/Android线程池/" rel="next" title="Android线程池">
+                <i class="fa fa-chevron-left"></i> Android线程池
               </a>
             
           </div>
@@ -510,10 +405,6 @@ startActivity(intent);
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/16/Android线程池/" rel="prev" title="Android线程池">
-                Android线程池 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -668,7 +559,7 @@ startActivity(intent);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android动态权限"><span class="nav-number">1.</span> <span class="nav-text">Android动态权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限等级"><span class="nav-number">2.</span> <span class="nav-text">权限等级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dangerous权限"><span class="nav-number">3.</span> <span class="nav-text">Dangerous权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态权限申请"><span class="nav-number">4.</span> <span class="nav-text">动态权限申请</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#申明权限"><span class="nav-number">4.1.</span> <span class="nav-text">申明权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限检查"><span class="nav-number">4.2.</span> <span class="nav-text">权限检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限申请"><span class="nav-number">4.3.</span> <span class="nav-text">权限申请</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合理的权限申请"><span class="nav-number">4.4.</span> <span class="nav-text">合理的权限申请</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限被拒绝"><span class="nav-number">4.5.</span> <span class="nav-text">权限被拒绝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal是什么"><span class="nav-number">1.</span> <span class="nav-text">ThreadLocal是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal使用"><span class="nav-number">2.</span> <span class="nav-text">ThreadLocal使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal实现原理"><span class="nav-number">3.</span> <span class="nav-text">ThreadLocal实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal内存泄漏"><span class="nav-number">4.</span> <span class="nav-text">ThreadLocal内存泄漏</span></a></li></ol></div>
             
 
           </div>
